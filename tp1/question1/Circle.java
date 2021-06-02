@@ -145,7 +145,12 @@ public class Circle {
         color = newColor;
         draw();
     }
-
+    
+    //pour le coucher de soleir dans la question2
+    public boolean isVisible()
+    {
+        return isVisible;
+    }
     /*
      * Draw the circle with current specifications on screen.
      */

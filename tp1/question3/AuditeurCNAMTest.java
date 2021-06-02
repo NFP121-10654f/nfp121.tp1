@@ -122,4 +122,35 @@ public class AuditeurCNAMTest extends junit.framework.TestCase {
         assertEquals(" nom avec accent (é devient e) ? ", "chloe_c",
             auditeur1.login());
     }
+    
+    //Les tests que j'ai créé
+    public void testAvecAccent()
+    {
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("Saadé", "émily", "12345");
+        assertEquals("saade_e", auditeur1.login());
+        assertEquals("12345", auditeur1.matricule());
+        assertEquals("Saadé", auditeur1.nom());
+        assertEquals("émily", auditeur1.prenom());
+        assertEquals("Saadé émily login : saade_e", auditeur1.toString());
+        assertNotSame("saadé_é", auditeur1.login());
+    }
+
+    
+    public void TestNomCompose()
+    {
+        question3.AuditeurCNAM auditeur2 = new question3.AuditeurCNAM("Bou Rouphael", "Rim", "456");
+        assertEquals("bou_ro_r", auditeur2.login());
+        assertEquals("456", auditeur2.matricule());
+        assertEquals("Bou Rouphael", auditeur2.nom());
+        assertEquals("Rim", auditeur2.prenom());
+        assertEquals("Bou Rouphael Rim login : bou_ro_r", auditeur2.toString());
+    }
+
+    
+    public void TestSpecialCharacter()
+    {
+        question3.AuditeurCNAM auditeur3 = new question3.AuditeurCNAM("Mon-nom", "Tiret", "1234");
+        assertEquals("mon_no_t", auditeur3.login());
+        assertEquals("Mon-nom Tiret login : mon_no_t", auditeur3.toString());
+    }
 }

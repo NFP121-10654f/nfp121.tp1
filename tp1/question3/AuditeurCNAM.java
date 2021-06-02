@@ -1,5 +1,5 @@
 package question3;
-
+import java.text.Normalizer;
 /**
  * NFP121 TpIntroduction, usage de BlueJ et du "Submitter".
  * 
@@ -44,8 +44,31 @@ public class AuditeurCNAM {
      * @return le login du Cnam simplifié, sans les adaptations dues aux
      *         homonymes...
      */
+    public static String replaceSpecial(String s)
+    {
+       s= Normalizer.normalize(s, Normalizer.Form.NFD);
+       s= s.replaceAll("[^\\p{ASCII}]", "");
+       /*
+        * Ou on peut ecrire ce code
+            s = s.replaceAll("[èéêëÈÉÊË]","e");
+            s = s.replaceAll("[ûùÛÙ]","u");
+            s = s.replaceAll("[ïîÏÎ]","i");
+            s = s.replaceAll("[àâÀÂ]","a");
+            s = s.replaceAll("[ôÔ]","o");
+        * a la place de :
+            * s= Normalizer.normalize(s, Normalizer.Form.NFD);
+            * s= s.replaceAll("[^\\p{ASCII}]", "");
+       */
+       s = s.replaceAll("[^a-zA-Z0-9]", "_");
+       return s ;
+    }
     public String login() {
-        return "";// à compléter
+        String log;
+        log = nom.substring(0, Math.min(nom.length(), 6)) + "_";
+        log += prenom.substring(0,1);
+        log = AuditeurCNAM.replaceSpecial(log);
+        log = log.toLowerCase();
+        return log;
     }
 
     /**
@@ -54,7 +77,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return nom;// à compléter
     }
 
     /**
@@ -63,7 +86,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return prenom;// à compléter
     }
 
     /**
@@ -72,7 +95,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return matricule;// à compléter
     }
 
     /**

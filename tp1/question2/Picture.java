@@ -1,5 +1,6 @@
 package question2;
 
+
 import question1.Circle;
 import question1.Square;
 import question1.Triangle;
@@ -20,7 +21,11 @@ public class Picture {
     private Square window;
     private Triangle roof;
     private Circle sun;
-
+    
+    
+    //ajout d'un nouveau soleil
+    private Circle sun2;
+    
     /**
      * Constructor for objects of class Picture
      */
@@ -55,6 +60,15 @@ public class Picture {
         sun.moveVertical(-10);
         sun.changeSize(60);
         sun.makeVisible();
+        
+        //Le nouveau soleil bleu
+        sun2 = new Circle();
+        sun2.changeColor("blue");
+        sun2.moveHorizontal(-10);
+        sun2.moveVertical(-20);
+        sun2.changeSize(60);
+        sun2.makeVisible();
+        
     }
 
     /**
@@ -67,6 +81,9 @@ public class Picture {
             window.changeColor("white");
             roof.changeColor("black");
             sun.changeColor("black");
+            
+            //changer la couleur du soleil blue 
+            sun2.changeColor("black");
         }
     }
 
@@ -80,7 +97,23 @@ public class Picture {
             window.changeColor("black");
             roof.changeColor("green");
             sun.changeColor("yellow");
+            
+            //Recolorier en bleu sun2 
+            sun2.changeColor("blue");
         }
     }
-
+    
+    public void coucherSoleil()
+    {
+        try
+        {
+            if(sun2.isVisible())
+                sun2.slowMoveVertical(300);
+        }
+        catch(Exception e)
+        { 
+            System.out.print('\u000C');
+            System.out.println("Le soleil n'est pas visible");
+        }
+    }
 }
